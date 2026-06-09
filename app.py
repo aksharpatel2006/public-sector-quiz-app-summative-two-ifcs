@@ -6,6 +6,7 @@ import streamlit as st
 from screens.welcome_screen import WelcomeScreen
 from screens.info_screen import InfoScreen
 from screens.question_screen import QuestionScreen
+from screens.results_screen import ResultsScreen
 from models.quiz import Quiz
 
 st.set_page_config(
@@ -28,4 +29,4 @@ elif st.session_state.screen == "quiz":
     QuestionScreen(quiz).render()
 
 elif st.session_state.screen == "results":
-    st.title("Results Screen Next commit")
+    ResultsScreen().render()
