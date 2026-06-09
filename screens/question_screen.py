@@ -55,10 +55,18 @@ class QuestionScreen:
             if selected_letter == question.correct_answer:
                 st.session_state.score += 1
             else:
+                correct_text = {
+                    "A": question.answer_a,
+                    "B": question.answer_b,
+                    "C": question.answer_c,
+                    "D": question.answer_d
+                }
                 st.session_state.incorrect_questions.append(
                     {
                         "question": question.question_text,
-                        "correct_answer": question.correct_answer
+                        "correct_answer": correct_text[
+                            question.correct_answer
+                        ]
                     }
                 )
 
