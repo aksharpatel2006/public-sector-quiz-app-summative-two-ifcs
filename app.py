@@ -13,6 +13,8 @@ st.set_page_config(
      layout="centered"
 )
 
+quiz = Quiz("questions.csv")
+
 if "screen" not in st.session_state:
     st.session_state.screen = "welcome"
 
