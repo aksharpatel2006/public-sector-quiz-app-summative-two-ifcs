@@ -5,6 +5,8 @@ Main Entry Point for Application
 import streamlit as st
 from screens.welcome_screen import WelcomeScreen
 from screens.info_screen import InfoScreen
+from screens.question_screen import QuestionScreen
+from models.quiz import Quiz
 
 st.set_page_config(
      page_title="Public Sector Quiz",
@@ -21,4 +23,7 @@ elif st.session_state.screen == "info":
     InfoScreen().render()
 
 elif st.session_state.screen == "quiz":
-    st.title("Quiz Screen Coming soon..")
+    QuestionScreen(quiz).render()
+
+elif st.session_state.screen == "results":
+    st.title("Results Screen Coming In Commit 4")
