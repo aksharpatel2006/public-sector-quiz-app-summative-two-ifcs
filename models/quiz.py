@@ -39,5 +39,4 @@ class Quiz:
             )
 
             questions.append(question)
-            file.close()
         return questions
