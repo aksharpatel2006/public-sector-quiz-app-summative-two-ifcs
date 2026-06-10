@@ -14,7 +14,7 @@ st.set_page_config(
      layout="centered"
 )
 
-quiz = Quiz("/Users/aksharpatel/Library/Application Support/Coding/quiz_app_ifcs_two/public-sector-quiz-app-summative-two-ifcs/data/questions.csv")
+quiz = Quiz("data/questions.csv")
 
 if "screen" not in st.session_state:
     st.session_state.screen = "welcome"

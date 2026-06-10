@@ -23,20 +23,23 @@ class Quiz:
         """
 
         questions = []
-
-        file = open(csv_file, "r", newline="", encoding="utf-8")
         
-        reader = csv.DictReader(file)
-        for row in reader:
-            question = Question(
-                row["Number"],
-                row["Question"],
-                row["Answer A"],
-                row["Answer B"],
-                row["Answer C"],
-                row["Answer D"],
-                row["Correct Answer"]
-            )
 
-            questions.append(question)
-        return questions
+        try:
+            file = open(csv_file, "r", newline="", encoding="utf-8")
+            reader = csv.DictReader(file)
+            for row in reader:
+                question = Question(
+                    row["Number"],
+                    row["Question"],
+                    row["Answer A"],
+                    row["Answer B"],
+                    row["Answer C"],
+                    row["Answer D"],
+                    row["Correct Answer"]
+                )
+                questions.append(question)
+            return questions
+
+        except FileNotFoundError:
+            print(f"Questions file not found: {csv_file}")

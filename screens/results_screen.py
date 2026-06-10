@@ -4,6 +4,7 @@ Results screen.
 
 import streamlit as st
 import pandas as pd
+from utils.csv_manager import ResultManager
 
 class ResultsScreen:
     """
@@ -22,6 +23,22 @@ class ResultsScreen:
             (score/total_questions)*100
         )
         passed = score >= 7
+        result_text = "PASS" if passed else "FAIL"
+
+        if "result_saved" not in st.session_state:
+            manager = ResultManager(
+                "data/scores.csv"
+            )
+
+            manager.save_result(
+                st.session_state.name,
+                score,
+                percentage,
+                result_text
+            )
+
+            st.session_state.result_saved = True
+        
 
         st.title("Results")
 
@@ -81,3 +98,5 @@ class ResultsScreen:
         st.session_state.score = 0
         st.session_state.user_answers = []
         st.session_state.incorrect_questions = []
+        if "result_saved" in st.session_state:
+            del st.session_state.result_saved
