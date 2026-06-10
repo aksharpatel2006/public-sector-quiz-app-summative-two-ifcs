@@ -85,13 +85,14 @@ Non-Functional requirements (NFR) define key attributes of the application such 
 | FR5  | System must read 10 questions and multiple-choice answers from CSV file    | Data Management                 |
 | FR6  | System must display one question at a time and present all multiple choice answers to user | User Interface/ Output |
 | FR7  | System must allow user to select one multiple-choice answer                | Input                           |
-| FR8  | System must track and store live user score in CSV file                    | Scoring Mechanism/ Data Management |
-| FR9  | System must track and keep a list of incorrectly answered questions in CSV file | Data Management/ Scoring |
-| FR10 | System must detect all button clicks and respond appropriately             | User Interface/ Output         |
-| FR11 | System must calculate pass/ fail rating based on user score              | Scoring/ Data Management       |
-| FR12 | System must display "Results" screen at the end and output a final score accompanied by a pass/ fail rating | User Interface/ Output |
-| FR13 | System must output score visualisations and incorrectly answered questions along with their correct responses on the "Results" page | User Interface/ Output |
-| FR14 | System must display a "Retry" button on the "Results" page for users who fail the quiz | User Interface/ Output |
+| FR8  | System must track live user score                    | Scoring Mechanism/ Data Management |
+| FR9  | System must track and store (write) all user scores (historical)                    | Scoring Mechanism/ Data Management |
+| FR10 | System must track and keep a list of incorrectly answered questions in CSV file | Data Management/ Scoring |
+| FR11 | System must detect all button clicks and respond appropriately             | User Interface/ Output         |
+| FR12 | System must calculate pass/ fail rating based on user score              | Scoring/ Data Management       |
+| FR13 | System must display "Results" screen at the end and output a final score accompanied by a pass/ fail rating | User Interface/ Output |
+| FR14 | System must output score visualisations and incorrectly answered questions along with their correct responses on the "Results" page | User Interface/ Output |
+| FR15 | System must display a "Retry" button on the "Results" page for users who fail the quiz | User Interface/ Output |
 <br>
 
 **Non-Functional Requirements (Data) Table:**
