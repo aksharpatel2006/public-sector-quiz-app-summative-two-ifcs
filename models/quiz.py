@@ -39,7 +39,8 @@ class Quiz:
                     row["Correct Answer"]
                 )
                 questions.append(question)
-            return questions
 
         except FileNotFoundError:
             print(f"Questions file not found: {csv_file}")
+
+        return questions
