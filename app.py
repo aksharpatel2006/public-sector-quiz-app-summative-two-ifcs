@@ -7,12 +7,15 @@ from screens.welcome_screen import WelcomeScreen
 from screens.info_screen import InfoScreen
 from screens.question_screen import QuestionScreen
 from screens.results_screen import ResultsScreen
+from utils.styles import load_css
 from models.quiz import Quiz
 
 st.set_page_config(
      page_title="Public Sector Quiz",
      layout="centered"
 )
+
+load_css()
 
 quiz = Quiz("data/questions.csv")
 

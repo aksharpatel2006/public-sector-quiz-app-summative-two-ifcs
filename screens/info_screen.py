@@ -31,11 +31,14 @@ class InfoScreen:
             """
         )
         
-        if st.button("Ready"):
-            # initialising values of quiz.
-            st.session_state.current_question = 0
-            st.session_state.score = 0
-            st.session_state.user_answers = []
-            st.session_state.incorrect_questions = []
-            st.session_state.screen = "quiz"
-            st.rerun()
+        col1, col2, col3 = st.columns([1, 1, 1])
+
+        with col2:
+            if st.button("Ready", use_container_width=True):
+                # initialising values of quiz.
+                st.session_state.current_question = 0
+                st.session_state.score = 0
+                st.session_state.user_answers = []
+                st.session_state.incorrect_questions = []
+                st.session_state.screen = "quiz"
+                st.rerun()
