@@ -22,5 +22,7 @@ def validate_name_input(name):
         return False, "Name cannot be empty!"
     elif re.search(r"\d", name):
         return False, "Name cannot contain numbers!"
+    elif not re.fullmatch(r"[A-Za-z\s\-]+", name):
+        return False, "Name can only contain letters, spaces and dashes!"
     else:
         return True, ""
