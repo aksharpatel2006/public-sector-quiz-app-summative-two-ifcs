@@ -26,6 +26,8 @@ class WelcomeScreen:
         name = st.text_input(
             "Please enter your name:"
         )
+
+        name = name.capitalize()
         
         if st.button("OK"):
             valid, message = validate_name_input(name)
