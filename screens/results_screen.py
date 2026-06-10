@@ -68,12 +68,12 @@ class ResultsScreen:
 
         st.divider()
 
-        chart_data = pd.DataFrame({"Result": ["Correct", "Incorrect"], "Count":[score, total_questions-score]})
+        chart_data = pd.DataFrame({"Answers": ["Correct", "Incorrect"], "Count":[score, total_questions-score]})
         
         st.subheader("Performance")
 
         st.bar_chart(
-            chart_data.set_index("Result")
+            chart_data.set_index("Answers")
         )
 
         st.divider()

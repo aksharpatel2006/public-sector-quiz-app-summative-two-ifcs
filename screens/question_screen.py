@@ -22,11 +22,12 @@ class QuestionScreen:
         """
 
         current_index = st.session_state.current_question
+        total_questions = len(self.quiz.questions)
 
         question = self.quiz.questions[current_index]
 
         st.subheader(
-            f"Question {current_index + 1}"
+            f"Question {current_index + 1} of {total_questions}"
         )
 
         st.write(question.question_text)

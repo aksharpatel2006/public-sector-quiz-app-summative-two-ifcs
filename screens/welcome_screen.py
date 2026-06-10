@@ -17,6 +17,12 @@ class WelcomeScreen:
 
         st.title("Welcome")
 
+        st.write(
+            """
+            Welcome to the Public Sector Quiz.
+            """
+        )
+
         name = st.text_input(
             "Please enter your name:"
         )
