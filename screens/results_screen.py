@@ -5,6 +5,7 @@ Results screen.
 import streamlit as st
 import pandas as pd
 from utils.csv_manager import ResultManager
+from models.quiz import calculate_percentage
 
 class ResultsScreen:
     """
@@ -19,9 +20,7 @@ class ResultsScreen:
         score = st.session_state.score
         total_questions = 10
 
-        percentage = int(
-            (score/total_questions)*100
-        )
+        percentage = calculate_percentage(score, total_questions)
         passed = score >= 7
         result_text = "PASS" if passed else "FAIL"
 

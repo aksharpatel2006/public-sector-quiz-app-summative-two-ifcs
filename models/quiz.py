@@ -5,6 +5,14 @@ Quiz Model
 import csv
 from models.question import Question
 
+
+def calculate_percentage(score, total_questions):
+        """
+        Pure function - calculates quiz percentage.
+        """
+
+        return int((score/ total_questions) * 100)
+
 class Quiz:
     """
     Class to handle quiz functionality.
@@ -16,6 +24,7 @@ class Quiz:
         """
 
         self.questions = self.load_questions(csv_file)
+
 
     def load_questions(self, csv_file):
         """
