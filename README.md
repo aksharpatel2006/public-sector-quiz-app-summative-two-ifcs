@@ -15,6 +15,7 @@ I will be using Python and the Streamlit framework to develop my application as 
 
 When developed, my quiz will act as a model/ proof-of-concept for how training courses and learning plans could be structured to help current employees and new joiners develop awareness of organisational policies and operations.
 
+
 ## Design
 
 ### GUI Designs:
@@ -120,6 +121,7 @@ Continuous Integration (CI/CD): GitHub Actions - Python Application <br>
 
 
 
+
 ## Development
 
 ### Object-Oriented Programming:
@@ -141,7 +143,6 @@ class Question:
         self.answer_c = answer_c
         self.answer_d = answer_d
         self.correct_answer = correct_answer
-        
 ```
 
 A major part of my application design is object-oriented programming (OOP). The class, "Question", is a strong example of OOP. This class models a single question in the quiz.
@@ -178,7 +179,7 @@ elif st.session_state.screen == "results":
 Alongside Python, Streamlit has been used as the GUI framework to develop the interactive user interface of my application. The code above uses Streamlit to control the UI and manage navigation between different screens of my quiz. Integrated into conditional statements, the session state variables store the user's current (UI) screen so that relevant information is rendered and output to the user. This functionality creates a multi-screen user experience. The modularity also improves code readability and makes each screen independent.
 
 
-### Pure, Testable Functions
+### Pure, Testable Functions:
 ```python
 def calculate_percentage(score, total_questions):
         """
@@ -212,7 +213,7 @@ def validate_name_input(name):
 The codebase contains pure functions so code becomes readable and easily testable. A pure function has no side affects and always returns the same output for a given input. calculate_percentage() is a pure function that takes the user's final score and calculates the percentage of questions they got correct. validate_name_input() is another pure function that takes the user's name and validates it against predefined patterns. Automated tests can be run on these functions as they are independent and don't affect other code. Having pure functions allows me to conduct quality assurance and test my code using pytest.
 
 
-### Input Validation
+### Input Validation:
 ```python
 import re
 
@@ -236,3 +237,163 @@ def validate_name_input(name):
         return True, ""
 ```
 
+Input Validation is another crucial element of my application; preventing invalid user input from entering the system's database. This improves data quality, consistency, and the reliability of my quiz.
+The name input is validated to prevent blank entries, or prevent data with numbers/ special characters from being entered. The regex module enforces validation, checking if the name matches a certain pattern ```(r"[A-Za-z\s\-]+")```. This improves usability while mitigating unexpected behaviour.
+
+
+### CSV Storage and Data Management:
+```python
+class ResultManager:
+    """
+    Manages quiz result storage.
+    """
+
+    def __init__(self, file_path):
+        """
+        Stores the CSV file path.
+        """
+
+        self.file_path = file_path
+
+
+    def save_result(
+            self,
+            name,
+            score,
+            percentage,
+            result
+        ):
+            """
+            Saving one quiz's result to CSV.
+            """
+
+            try:
+                with open(self.file_path, mode="a", newline="", encoding="utf-8") as file:
+                    writer = csv.writer(file)
+
+                    writer.writerow(
+                        [
+                            name,
+                            score,
+                            percentage,
+                            result,
+                            datetime.now().strftime(
+                                "%Y-%m-%d %H:%M:%S"
+                            )
+                        ]
+                    )
+
+            except Exception as error:
+                print(
+                    f"Error saving result: {error}"
+                )
+```
+
+```python
+def render(self):
+        """
+        Renders results screen.
+        """
+        
+        score = st.session_state.score
+        total_questions = 10
+
+        percentage = calculate_percentage(score, total_questions)
+        passed = score >= 7
+        result_text = "PASS" if passed else "FAIL"
+
+        if "result_saved" not in st.session_state:
+            manager = ResultManager(
+                "data/scores.csv"
+            )
+
+            manager.save_result(
+                st.session_state.name,
+                score,
+                percentage,
+                result_text
+            )
+
+            st.session_state.result_saved = True
+        
+
+        st.title("Results")
+
+        st.subheader(
+            f"You scored {score}/{total_questions} ({percentage}%)"
+        )
+
+        if passed:
+            st.success("PASS")
+        else:
+            st.error("FAIL")
+
+        st.divider()
+
+        st.subheader(
+            "Questions you got wrong + correct answers:"
+        )
+
+        if len(st.session_state.incorrect_questions) > 0:
+            for item in st.session_state.incorrect_questions:
+                st.write(
+                    f"**{item['question']}**"
+                )
+                st.write(
+                    f"Correct Answer: {item['correct_answer']}"
+                )
+                st.write("---")
+
+        st.divider()
+
+        chart_data = pd.DataFrame({"Answers": ["Correct", "Incorrect"], "Count":[score, total_questions-score]})
+        
+        st.subheader("Performance")
+
+        st.bar_chart(
+            chart_data.set_index("Answers")
+        )
+
+        st.divider()
+
+        if not passed:
+            if st.button("Retry"):
+                self.reset_quiz()
+                st.rerun()
+        else:
+            st.success(
+                "Congratulations! You passed."
+            )
+```
+
+My application uses CSV files to persistently store quiz results. The "ResultManager" class manages this reading and writing of quiz data. The class takes in a CSV file for storage, using it to record the user's name, score, percentage, result, and timestamp for each quiz attempt. This implementation ensures that historical results/ data is saved permanently, making it accessible in the future. The code also renders a results screen, displaying the user’s score, incorrect answers, and a retry button (conditionally).
+
+
+### Exception Handling:
+```python
+try:
+            with open(self.file_path, mode="a", newline="", encoding="utf-8") as file:
+                writer = csv.writer(file)
+
+                writer.writerow(
+                    [
+                        name,
+                        score,
+                        percentage,
+                        result,
+                        datetime.now().strftime(
+                            "%Y-%m-%d %H:%M:%S"
+                        )
+                    ]
+                )
+
+        except Exception as error:
+            print(
+                f"Error saving result: {error}"
+            )
+```
+
+Exception handling was implemented when reading & writing CSV files. This prevents the app from crashing if the file is missing/ inaccessible. My handler uses try and except blocks, placing the CSV writer functionality within the try block, and placing the custom error message in the except block. The try block runs first. If an error occurs, the except block is executed, printing the raised error. This improves application robustness & reliability.
+
+
+### Testing
