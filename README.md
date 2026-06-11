@@ -121,4 +121,118 @@ Continuous Integration (CI/CD): GitHub Actions - Python Application <br>
 
 
 ## Development
- 
+
+### Object-Oriented Programming:
+```python
+class Question:
+    """
+    Class for modelling a single quiz question.
+    """
+
+    def __init__(self, question_number, question_text, answer_a, answer_b, answer_c, answer_d, correct_answer):
+        """
+        Creates the Question object and initialises its values.
+        """
+
+        self.question_number = question_number
+        self.question_text = question_text
+        self.answer_a = answer_a
+        self.answer_b = answer_b
+        self.answer_c = answer_c
+        self.answer_d = answer_d
+        self.correct_answer = correct_answer
+        
+```
+
+A major part of my application design is object-oriented programming (OOP). The class, "Question", is a strong example of OOP. This class models a single question in the quiz.
+Classes are a fudamental concept as they allow for modular and maintainble code which can be reused as a blueprint. Classes also allow for security/ data protection since they encapsulate the data within them. This class is used as a framework to create the multiple choice questions for my quiz. It comprises core question attributes and initialises them, e.g. question_number. This allows me to consistently create 10 reliable, multiple choice question for my quiz using the data in my questions.csv file.
+
+
+### Streamlit User Interface:
+```python
+st.set_page_config(
+     page_title="Public Sector Quiz",
+     layout="centered"
+)
+
+load_css()
+
+quiz = Quiz("data/questions.csv")
+
+if "screen" not in st.session_state:
+    st.session_state.screen = "welcome"
+
+if st.session_state.screen == "welcome":
+    WelcomeScreen().render()
+
+elif st.session_state.screen == "info":
+    InfoScreen().render()
+
+elif st.session_state.screen == "quiz":
+    QuestionScreen(quiz).render()
+
+elif st.session_state.screen == "results":
+    ResultsScreen().render()
+```
+
+Alongside Python, Streamlit has been used as the GUI framework to develop the interactive user interface of my application. The code above uses Streamlit to control the UI and manage navigation between different screens of my quiz. Integrated into conditional statements, the session state variables store the user's current (UI) screen so that relevant information is rendered and output to the user. This functionality creates a multi-screen user experience. The modularity also improves code readability and makes each screen independent.
+
+
+### Pure, Testable Functions
+```python
+def calculate_percentage(score, total_questions):
+        """
+        Pure function - calculates quiz percentage.
+        """
+
+        return int((score/ total_questions) * 100)
+```
+
+```python
+def validate_name_input(name):
+    """
+    Validates the name input.
+
+    Returns:
+        tuple(bool, str)
+    """
+
+    name = name.strip()
+
+    if not name:
+        return False, "Name cannot be empty!"
+    elif re.search(r"\d", name):
+        return False, "Name cannot contain numbers!"
+    elif not re.fullmatch(r"[A-Za-z\s\-]+", name):
+        return False, "Name can only contain letters, spaces and dashes!"
+    else:
+        return True, ""
+```
+
+The codebase contains pure functions so code becomes readable and easily testable. A pure function has no side affects and always returns the same output for a given input. calculate_percentage() is a pure function that takes the user's final score and calculates the percentage of questions they got correct. validate_name_input() is another pure function that takes the user's name and validates it against predefined patterns. Automated tests can be run on these functions as they are independent and don't affect other code. Having pure functions allows me to conduct quality assurance and test my code using pytest.
+
+
+### Input Validation
+```python
+import re
+
+def validate_name_input(name):
+    """
+    Validates the name input.
+
+    Returns:
+        tuple(bool, str)
+    """
+
+    name = name.strip()
+
+    if not name:
+        return False, "Name cannot be empty!"
+    elif re.search(r"\d", name):
+        return False, "Name cannot contain numbers!"
+    elif not re.fullmatch(r"[A-Za-z\s\-]+", name):
+        return False, "Name can only contain letters, spaces and dashes!"
+    else:
+        return True, ""
+```
+
