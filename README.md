@@ -1,6 +1,3 @@
-# public-sector-quiz-app-summative-two-ifcs
-A Quiz Application Developed Using Streamlit and Python. Tests knowledge on the public sector, covering key topics such as security and data sensitivity.
-
 ## Introduction
 Working as a degree apprentice within IBM Consulting involves solving problems and delivering technological solutions to clients. As a data scientist on a public sector consulting project, I am working in an environment where security, data sensitivity, and integrity are critical. In this type of work environment, employees are expected to maintain strong awareness of strict organisational procedures/ policies, ethics and operational expectations. This helps keep the public sector secure and prevents any official sensitive data from being exploited or leaked.
 However, serious incidents can occur when employees accidentally expose confidential public sector information due to knowledge gaps regarding organisational policies and consequences.
@@ -484,18 +481,91 @@ My testing strategy was focussed around rigorous application testing and quality
 
 
 ### Unit Testing Outcomes
-I ran unit tests on the pure functions inside my codebase, specifically the calculate_percentage() and validate_name_input() functions. This helped verify if they worked as expected. The test functions were written using the Pytest framework, and they used ```assert``` statements to validate if each function's output matched my expected result for a given set of inputs. These test functions are are stored in test files, and start with the keyword "test_", so pytest can detect them. "test_percentage_80()" is an example of a unit test which tests "calculate_percentage()" with an input of 80. "test_name_with_numbers()" is an example of a test function that tests the validation function with a name that contains numbers. For both functions, I have written many test functions with various assertions to test the functions thoroughly with all sorts of inputs - including invalid/ extreme values. This has verified my app to be robust.
+I ran unit tests on the pure functions inside my codebase, specifically the calculate_percentage() and validate_name_input() functions. This helped verify if they worked as expected. The test functions were written using the Pytest framework, and they used ```assert``` statements to validate if each function's output matched my expected result for a given set of inputs. These test functions are are stored in test files, and start with the keyword "test_", so pytest can detect them. "test_percentage_80()" is an example of a unit test which tests "calculate_percentage()" with an argument of 80. "test_name_with_numbers()" is an example of a test function that tests the validation function with a name that contains numbers. For both functions, I have written many test functions with various assertions to test the functions thoroughly with all sorts of inputs - including invalid/ extreme values (e.g. "Akshar123" for the validate_name_input() function). This has verified my app to be robust.
 
-Test functions:
+Test functions:<br>
 ![alt text](image-44.png)
 ![alt text](image-45.png)
 
-Unit Tests passing - locally + in CI pipeline:
+Unit Tests passing - locally + in CI pipeline:<br>
 ![alt text](image-46.png)
 ![alt text](image-47.png)
 
-Unit Tests Failing Purposefully:
-I tested the "def test_percentage_60():" after changing the assertion from 60 to 40. This verified that unit tests fail when the function output does not match the assertion.
+Unit Tests Failing Purposefully:<br>
+I tested "def test_percentage_60()" after changing the assertion from 60 to 40. This verified that unit tests fail when the function outputs don't match the assertions.
 ![alt text](image-48.png)
 ![alt text](image-49.png)
 
+
+## Documentation
+### User Documentation
+
+**Step 1: Open the application**<br>Click [this link](https://public-sector-quiz.streamlit.app/) to launch the quiz application in your browser.
+
+**Step 2: Enter your name**<br>Type your name into the box labelled "Please enter your name:", and then click the "OK" button below it to submit.
+![alt text](image-50.png)
+
+**Step 3: Read quiz info**<br>Read the quiz information/ instructions on the screen, and click the "Ready" button when you're ready to start the quiz.
+![alt text](image-51.png)
+
+**Step 4: Answer the questions**<br>Read the question on the screen and select one answer from the multiple choice responses that are given to you. Click the "Next" button to confirm your answer and move onto the next question.
+![alt text](image-52.png)
+![alt text](image-53.png)
+
+**Step 5: View your results**<br>Upon submitting the answer for question 10, you'll be presented to a results screen which shows:<br>-Score<br>-Percentage<br>-Pass/Fail outcome<br>-Questions answered incorrectly<br>-Visualisation showing performance
+![alt text](image-54.png)
+
+Next to incorrectly answered questions you can also view the correct answers.
+![alt text](image-55.png)
+
+The visualisation displays a bar chart of correct answers vs. incorrect answers.
+![alt text](image-56.png)
+
+*If you fail, there will be a "Retry" button at the bottom of the screen so you can retake the quiz.*
+![alt text](image-57.png)
+![alt text](image-58.png)
+
+**Step 5: Refresh anytime**<br>To start again, refresh the page or reopen the [link](https://public-sector-quiz.streamlit.app/).
+
+
+### Technical Documentation - For Developers
+
+**Step 1: Clone the repository**<br>To work with the existing app, open a new VSCode project and paste the following command into terminal:
+
+```bash
+git clone https://github.com/aksharpatel2006/public-sector-quiz-app-summative-two-ifcs.git
+```
+
+This creates a local copy of the code on your machine, which you can edit.
+
+**Step 2: Change directory**<br>Change directory into project folder. This will allow you to run parts of the application using terminal. Paste the following into terminal:
+
+```bash
+cd public-sector-quiz-app-summative-two-ifcs/
+```
+
+**Step 3: Setup Virtual environment**<br>Create and activate a virtual environmrnt. This is a "container" that allows you to install packages and dependencies without causing conflicts with packages in your global environment. Paste the following commands into terminal:
+
+```bash
+python -m venv .venv
+```
+
+```bash
+source .venv/bin/activate
+```
+
+**Step 4: Install dependencies**<br>The app was developed using external libraries. These need to be installed onto your machine in order for the code to run. Paste the following command into terminal to install the relevant packages into your .venv:
+
+```bash
+pip install -r requirements.txt
+```
+
+**Step 5: Modify!**<br>You can now start modifying and experimenting with the code. If you want to locally see the changes to your application after making any updates, run the following command in terminal:
+
+```bash
+streamlit run app.py
+```
+
+
+## Evaluation
+What went well:<br> Using the streamlit library enabled rapid development of my graphical user interface
