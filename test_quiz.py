@@ -4,6 +4,15 @@ Quiz score tests.
 
 from models.quiz import calculate_percentage
 
+# smoke test
+def test_smoke():
+    """
+    Smoke test.
+    Ensures pytest testing framework is functional.
+    """
+
+    assert 2+2 == 4
+
 def test_percentage_100():
     """
     Testing full marks.

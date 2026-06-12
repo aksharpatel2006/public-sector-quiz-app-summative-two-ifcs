@@ -119,7 +119,72 @@ Continuous Integration (CI/CD): GitHub Actions - Python Application <br>
 
 ### Code Design - OOP
 
+                    +------------------+
+                    |     Question     |
+                    +------------------+
+                    | question_number  |
+                    | question_text    |
+                    | answer_a         |
+                    | answer_b         |
+                    | answer_c         |
+                    | answer_d         |
+                    | correct_answer   |
+                    +------------------+
 
+                             ▲
+                             |
+                             | contains
+                             |
+                    +------------------+
+                    |       Quiz       |
+                    +------------------+
+                    | questions        |
+                    +------------------+
+                    | load_questions() |
+                    +------------------+
+
+
++------------------+      +------------------+
+| WelcomeScreen    |      |   InfoScreen     |
++------------------+      +------------------+
+| render()         |      | render()         |
++------------------+      +------------------+
+
+          \                    /
+           \                  /
+            \                /
+             \              /
+              ▼            ▼
+
+          +---------------------+
+          |   QuestionScreen    |
+          +---------------------+
+          | quiz                |
+          +---------------------+
+          | render()            |
+          +---------------------+
+
+                     |
+                     ▼
+
+          +---------------------+
+          |   ResultsScreen     |
+          +---------------------+
+          | render()            |
+          | reset_quiz()        |
+          +---------------------+
+
+                     |
+                     ▼
+
+          +---------------------+
+          |   ResultManager     |
+          +---------------------+
+          | file_path           |
+          +---------------------+
+          | save_result()       |
+          | load_results()      |
+          +---------------------+
 
 
 ## Development
@@ -396,4 +461,10 @@ try:
 Exception handling was implemented when reading & writing CSV files. This prevents the app from crashing if the file is missing/ inaccessible. My handler uses try and except blocks, placing the CSV writer functionality within the try block, and placing the custom error message in the except block. The try block runs first. If an error occurs, the except block is executed, printing the raised error. This improves application robustness & reliability.
 
 
-### Testing
+## Testing -2329
+My testing strategy was focussed around rigourous application testing and quality assurance. The process was guided using the functional requirements and non-functional requirements of my application, and it comprises of the following test methodologies: <br><br> 1. Manual testing <br> 2. Unit/ Automated testing <br> 3. Smoke testing <br> 4. Integration testing <br> 5. Regression testing through a continuous integration pipeling on GitHub.x
+
+### Testing Techniques - Application, Justification
+Below are the various testing methodologies that I've used to test different parts of my application and my reasons for using them.
+1. Unit Testing (Automated) - I've used automated tests to test the small units of my applications - particularly the (pure) functions within my codebase. Functions perform specific tasks and to make sure they work as expected, unit tests can be run on them. For example, the function "calculate_percentage()" To test is i've got a uni tet
+2. Smoke Testing - I've written smoke tests at the start of both of my test files to ensure that my testing framwork is imported and works as expected. By writing smoke tests, I am able to make sure that my testing framework is functional before I write any deeper tests which test the actual codebase and program functionality.  For 
