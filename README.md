@@ -490,10 +490,12 @@ Test functions:
 ![alt text](image-44.png)
 ![alt text](image-45.png)
 
-Unit Tests passing - locally + in CI pipeline
+Unit Tests passing - locally + in CI pipeline:
 ![alt text](image-46.png)
 ![alt text](image-47.png)
 
 Unit Tests Failing Purposefully:
-I tested the "def test_percentage_60():" after changing the assertion from 60 to 40. This verified that unit test fails when the function output does not match the assertion.
+I tested the "def test_percentage_60():" after changing the assertion from 60 to 40. This verified that unit tests fail when the function output does not match the assertion.
 ![alt text](image-48.png)
+![alt text](image-49.png)
+
