@@ -49,8 +49,9 @@ The user interface design is simple and linear user journey designed to make the
 ![alt text](image-20.png)
 *Error Messagebox (Invalid Characters). If the user inputs invalid characters in the name field, this error messagebox is displayed.*
 
-Figma Designs Prototype Link: <br>
-```https://www.figma.com/proto/8pMmDQwf51MyWRiGa8xm4e/Summative-2-Quiz-Design?node-id=0-1&t=DFJ5UlcQQq93g9qx-1```
+
+**Figma Designs Prototype Link:**<br>
+https://www.figma.com/design/8pMmDQwf51MyWRiGa8xm4e/Summative-2-Quiz-Design?node-id=0-1&t=hkJhHeWn0bJmmODu-1<br><br>![alt text](image-60.png)
 
 <br>
 
@@ -116,72 +117,6 @@ Continuous Integration (CI/CD): GitHub Actions - Python Application <br>
 
 ### Code Design - OOP
 
-                    +------------------+
-                    |     Question     |
-                    +------------------+
-                    | question_number  |
-                    | question_text    |
-                    | answer_a         |
-                    | answer_b         |
-                    | answer_c         |
-                    | answer_d         |
-                    | correct_answer   |
-                    +------------------+
-
-                             ▲
-                             |
-                             | contains
-                             |
-                    +------------------+
-                    |       Quiz       |
-                    +------------------+
-                    | questions        |
-                    +------------------+
-                    | load_questions() |
-                    +------------------+
-
-
-+------------------+      +------------------+
-| WelcomeScreen    |      |   InfoScreen     |
-+------------------+      +------------------+
-| render()         |      | render()         |
-+------------------+      +------------------+
-
-          \                    /
-           \                  /
-            \                /
-             \              /
-              ▼            ▼
-
-          +---------------------+
-          |   QuestionScreen    |
-          +---------------------+
-          | quiz                |
-          +---------------------+
-          | render()            |
-          +---------------------+
-
-                     |
-                     ▼
-
-          +---------------------+
-          |   ResultsScreen     |
-          +---------------------+
-          | render()            |
-          | reset_quiz()        |
-          +---------------------+
-
-                     |
-                     ▼
-
-          +---------------------+
-          |   ResultManager     |
-          +---------------------+
-          | file_path           |
-          +---------------------+
-          | save_result()       |
-          | load_results()      |
-          +---------------------+
 
 
 ## Development
@@ -568,4 +503,8 @@ streamlit run app.py
 
 
 ## Evaluation
-What went well:<br> Using the streamlit library enabled rapid development of my graphical user interface
+What went well:<br>Using the streamlit library accelerated the development of my MVP because I did not have to code any core functionality of the GUI from scratch, nor did I have to program any interactive elements of my application. Using the streamlit library simplified the UI by giving me exposure to a vast range of built-in functions/ features to handle the basic functionality of my MVP's GUI. I also feel that using the object-oriented programming paradigm was a strong point of my project. This is because OOP made my code modular, independent and hence, maintainable. Lastly, I feel that quality assurance was a strong point of my project because of the various testing methodologies that allowed me to thoroughly check different parts of my quiz. For example, regression testing and unit testing.
+
+Limitations:<br>I feel that having only ten questions in my quiz is a limitation. Although they cover the most crucial public sector policies and practices, there can be many more questions which can be added in order to address different topics/ areas within the public sector and strengthen overall employee knowledge. Another limitation of my project is the way CSV files are used for persistent data storage. Although this is a reliable approach for storing data in my MVP, it's not entirely robust. There is a possibility that performance can degrade overtime as the number of result data increases. Lastly, I believe my application would be better with a previous button so users can navigate to previous questions and revise answers.
+
+Future improvements:<br>To improve the application in the future, I could add a broader range of questions which are randomised. This can help cover wider topics/ areas within the public sector and boost core employee knowledge. Another future improvement which can be made is switching over to a proper SQL database for persistent data storage. This can make data storage more reliable and can make searching/ filtering records feasible. Additionally, a login system can also be added to ensure employee data is protected from other colleagues. Lastly, I believe that a previous button can be added so that users can go back and revise answers if need be.
