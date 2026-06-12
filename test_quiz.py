@@ -39,7 +39,7 @@ def test_percentage_60():
     Testing 60%.
     """
 
-    assert calculate_percentage(6, 10) == 60
+    assert calculate_percentage(6, 10) == 40
 
 def test_percentage_0():
     """

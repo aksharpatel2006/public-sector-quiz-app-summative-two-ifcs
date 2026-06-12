@@ -483,4 +483,17 @@ My testing strategy was focussed around rigorous application testing and quality
 | T14 | Retry button | User fails the quiz | Retry button displayed if the user fails (conditional) | Retry button displayed if the user fails (conditional)  | Pass | ![alt text](image-43.png) |
 
 
-### Manual Test Table
+### Unit Testing Outcomes
+I ran unit tests on the pure functions inside my codebase, specifically the calculate_percentage() and validate_name_input() functions. This helped verify if they worked as expected. The test functions were written using the Pytest framework, and they used ```assert``` statements to validate if each function's output matched my expected result for a given set of inputs. These test functions are are stored in test files, and start with the keyword "test_", so pytest can detect them. "test_percentage_80()" is an example of a unit test which tests "calculate_percentage()" with an input of 80. "test_name_with_numbers()" is an example of a test function that tests the validation function with a name that contains numbers. For both functions, I have written many test functions with various assertions to test the functions thoroughly with all sorts of inputs - including invalid/ extreme values. This has verified my app to be robust.
+
+Test functions:
+![alt text](image-44.png)
+![alt text](image-45.png)
+
+Unit Tests passing - locally + in CI pipeline
+![alt text](image-46.png)
+![alt text](image-47.png)
+
+Unit Tests Failing Purposefully:
+I tested the "def test_percentage_60():" after changing the assertion from 60 to 40. This verified that unit test fails when the function output does not match the assertion.
+![alt text](image-48.png)
